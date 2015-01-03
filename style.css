@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+}
+
+canvas { 
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: 1px solid #ccc;
+	z-index: 0;
+}
+
+div {
+	position:absolute;
+	background-color: rgba(0,0,0,0);
+	pointer-events:none;
+}
+
+h1, h2 {
+	font-family: 'museo-sans';
+	font-size: 32pt;
+	letter-spacing: 16pt;
+	z-index: 999;
+	background-color: rgba(0,0,0,0);
+}
+
+h2 {
+	text-align: left;
+	margin-bottom: 8pt;
+	letter-spacing: 5pt;
+	font-size: 12pt;
+}
+
