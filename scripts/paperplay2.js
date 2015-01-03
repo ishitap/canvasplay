@@ -1,3 +1,5 @@
+/* adapted from http://perfectionkills.com/exploring-canvas-drawing-techniques/ */
+
 tool.fixedDistance = 30;
 
 function drawPixels(x, y) {

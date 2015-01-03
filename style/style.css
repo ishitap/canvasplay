@@ -6,18 +6,30 @@ canvas {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 1px solid #ccc;
 	z-index: 0;
 }
 
-div {
+#header {
 	position:absolute;
 	background-color: rgba(0,0,0,0);
 	pointer-events:none;
 }
 
+#arrow {
+	position:absolute;
+	pointer-events:all;
+}
+
+img {
+	pointer-events:all;
+}
+
+img:hover {
+	opacity:0.6;
+}
+
 h1, h2 {
-	font-family: 'museo-sans';
+	font-family: 'museo-sans', 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 32pt;
 	letter-spacing: 16pt;
 	z-index: 999;
@@ -29,5 +41,10 @@ h2 {
 	margin-bottom: 8pt;
 	letter-spacing: 5pt;
 	font-size: 12pt;
+}
+
+#first, #second {
+	height:100%;
+	width:100%;
 }
 
