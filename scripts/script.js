@@ -12,17 +12,17 @@ $(window).resize(resizeCanvas);
 
 $(document).ready(function() {
 
-	$("#arrow").click(function(e) {
-	 e.preventDefault();
-    $('html, body').animate({
-        scrollTop: $("#second").offset().top
-    }, {duration: 600, queue: false});
+	// $("#arrow").click(function(e) {
+	//  e.preventDefault();
+ //    $('html, body').animate({
+ //        scrollTop: $("#second").offset().top
+ //    }, {duration: 600, queue: false});
 
-    $("#first").animate({
-    	opacity:1
-    }, {duration: 600, queue: false});
+ //    $("#first").animate({
+ //    	opacity:1
+ //    }, {duration: 600, queue: false});
 
-	});
+	// });
   resizeCanvas();
 });
 
