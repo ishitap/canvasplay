@@ -15,9 +15,9 @@ tool.fixedDistance = 30;
 var pixels = [];
 var colors = ['red', 'orange', 'yellow', 'green', 'light-blue', 'blue', 'purple'];
 var densityInverse = 0.7;
-var drawingEnabled = true;
+var exploded = false;
 
-
+// utility functions
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -26,6 +26,14 @@ function getRandomFloat(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+var getRandomPointOnCircle = function (cx, cy, r) {
+  var theta = getRandomFloat(0, 2*Math.PI);
+  var x = r * Math.cos(theta);
+  var y = r * Math.sin(theta);
+  return {x:cx+x, y:cy+y};
+}
+
+// initial paintbrush
 function drawPixels(x, y) {
   for (var i = -15; i < 15; i+= 4) {
     for (var j = -15; j < 15; j+= 4) {
@@ -49,12 +57,13 @@ function drawPixels(x, y) {
 }
 
 function onMouseMove(event) {
-  if (drawingEnabled)
+  if (!exploded)
     drawPixels(event.middlePoint.x, event.middlePoint.y);
 }
 
 //----
 
+// explosion
 function Pixel ()
 {
   this.scale = 1.0;
@@ -93,7 +102,6 @@ var rebound = false;
 
 function update () {
   cycles++;
-
 
   // clear canvas
   ctx.globalAlpha=1;
@@ -143,28 +151,59 @@ var explode = function (e) {
   cancelAnimationFrame(myReq);
 }
 
+var updatePage = function () {
+  console.log()
+  $("#page").removeClass("hidden");
+}
+
 $("#arrow").click(function (e) {
+  // EXPLODE!
   explode(e);
 
+  // disable canvas
   $("#c").css("pointer-events", "none");
-  drawingEnabled = false;
+  exploded = true;
 
   // slide up letters
   window.setTimeout(function () {
+
+    $("#page").removeClass("hidden");
+
     $("#header").animate({
       top: -40
     }, {duration: 700, queue: false});
+    
     $("#subhead, #arrow").animate({
       opacity: 0
-    }, {duration: 700, queue: false})
+    }, {duration: 700, queue: false});
+
+    $("#page").animate({
+      top: 150,
+      opacity: 1
+    }, {duration: 700, queue: false});
+
   }, 1500);
 
 });
 
+//--
 
-var getRandomPointOnCircle = function (cx, cy, r) {
-  var theta = getRandomFloat(0, 2*Math.PI);
-  var x = r * Math.cos(theta);
-  var y = r * Math.sin(theta);
-  return {x:cx+x, y:cy+y};
+// resizing
+var resizeCanvas = function () {
+  
+
+  var w = ($("#first").width() - $("#header").width())/2;
+  $("#header").css("left", w);
+  if (!exploded)
+    $("#header").css("top", $("#first").height()/2 - 100);
+
+  w = ($(window).width() - $("#arrow").width())/2;
+  $("#arrow").css("left", w);
+  $("#arrow").css("top", $("#first").height() - 124);
 }
+
+$(window).resize(resizeCanvas);
+
+$(document).ready(function() {
+  resizeCanvas();
+});
