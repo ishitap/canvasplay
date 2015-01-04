@@ -151,10 +151,28 @@ var explode = function (e) {
   cancelAnimationFrame(myReq);
 }
 
-var updatePage = function () {
-  console.log()
-  $("#page").removeClass("hidden");
+var createNavbar = function () {
+  $("#header").appendTo("#navbar");
+  $("#header").css("background-color", "rgba(255,255,255,0.9)")
 }
+
+var slideup = function () {
+  $("#page").removeClass("hidden");
+
+  $("#header").animate({
+    top: -40
+  }, {duration: 700, queue: false});
+  
+  $("#subhead, #arrow").animate({
+    opacity: 0
+  }, {duration: 700, queue: false});
+
+  $("#page").animate({
+    top: 150,
+    opacity: 1
+  }, {duration: 700, queue: false, complete: createNavbar});
+}
+
 
 $("#arrow").click(function (e) {
   // EXPLODE!
@@ -166,22 +184,17 @@ $("#arrow").click(function (e) {
 
   // slide up letters
   window.setTimeout(function () {
-
-    $("#page").removeClass("hidden");
-
-    $("#header").animate({
-      top: -40
-    }, {duration: 700, queue: false});
-    
-    $("#subhead, #arrow").animate({
-      opacity: 0
-    }, {duration: 700, queue: false});
-
-    $("#page").animate({
-      top: 150,
-      opacity: 1
-    }, {duration: 700, queue: false});
-
+    if (rebound) {
+      console.log(rebound)
+      console.log('hi')
+      slideup();
+    }
+    else {
+      console.log(rebound)
+      window.setTimeout(function () {
+        slideup();
+      }, 1000)
+    }
   }, 1500);
 
 });
@@ -206,4 +219,5 @@ $(window).resize(resizeCanvas);
 
 $(document).ready(function() {
   resizeCanvas();
+  $("#header,#arrow").removeClass("hidden");
 });
