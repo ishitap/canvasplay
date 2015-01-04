@@ -193,7 +193,7 @@ $("#arrow").click(function (e) {
       console.log(rebound)
       window.setTimeout(function () {
         slideup();
-      }, 1000)
+      }, 800)
     }
   }, 1500);
 

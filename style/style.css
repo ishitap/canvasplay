@@ -77,7 +77,7 @@ h2 {
 }
 
 #page h1 {
-	font-family: "museo-sans";
+	font-family: "museo-sans", 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
 	font-weight: normal;
 	color: rgba(0,0,0,0.4);
 	font-size: 18px;
@@ -104,8 +104,8 @@ h2 {
 #footer {
 	text-align: center;	
 	margin: 100px auto 20px auto;
-	font-family: "museo-sans", serif;
-	font-weight: 100;
+	font-family: "museo-sans", 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
+	font-weight: normal;
 	letter-spacing: 2px;
 	opacity: 0.5;
 	font-size: 16px;
