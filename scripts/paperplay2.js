@@ -16,6 +16,7 @@ var pixels = [];
 var colors = ['red', 'orange', 'yellow', 'green', 'light-blue', 'blue', 'purple'];
 var densityInverse = 0.7;
 var exploded = false;
+var accFactor = 1;
 
 // utility functions
 function getRandomInt(min, max) {
@@ -144,33 +145,43 @@ var explode = function (e) {
     var dest = getRandomPointOnCircle(cx_mean, cy_mean, getRandomInt(0,200));
     pixels[i].target = dest;
 
-    pixels[i].velocityX = (dest.x - pixels[i].x) * r;
-    pixels[i].velocityY = (dest.y - pixels[i].y) * r;
+    if (pixels.length > 1000)
+      accFactor = 4;
+    // if (pixels.length > 2000)
+    //   accFactor = 8;
+
+    pixels[i].velocityX = (dest.x - pixels[i].x) * r * accFactor;
+    pixels[i].velocityY = (dest.y - pixels[i].y) * r * accFactor;
   }
   requestAnimationFrame(update);
   cancelAnimationFrame(myReq);
 }
 
 var createNavbar = function () {
-  $("#header").appendTo("#navbar");
-  $("#header").css("background-color", "rgba(255,255,255,0.9)")
+  $(".header").appendTo("#navbar");
+  $(".header").css("background-color", "rgba(255,255,255,0.9)")
+  $(".header, .header h1").addClass("movedUp")
 }
 
 var slideup = function () {
-  $("#page").removeClass("hidden");
+  $(".page").removeClass("hidden");
 
-  $("#header").animate({
-    top: -40
+  $(".header").animate({
+    "padding-top": 0,
+    "margin-top": -40
   }, {duration: 700, queue: false});
   
-  $("#subhead, #arrow").animate({
+  $("#subhead, #arrow, #learn").animate({
     opacity: 0
-  }, {duration: 700, queue: false});
+  }, {duration: 700, queue: false, complete: function () {
+    $("#arrow, #learn").css("display", "none")
+  }});
 
-  $("#page").animate({
-    top: 150,
+  $(".page").animate({
+    top: 0,
     opacity: 1
   }, {duration: 700, queue: false, complete: createNavbar});
+
 }
 
 
@@ -203,21 +214,17 @@ $("#arrow").click(function (e) {
 
 // resizing
 var resizeCanvas = function () {
-  
-
-  var w = ($("#first").width() - $("#header").width())/2;
-  $("#header").css("left", w);
   if (!exploded)
-    $("#header").css("top", $("#first").height()/2 - 100);
+    $(".header").css("padding-top", $("#first").height()/2 - 150);
 
-  w = ($(window).width() - $("#arrow").width())/2;
-  $("#arrow").css("left", w);
-  $("#arrow").css("top", $("#first").height() - 124);
+  // w = ($(window).width() - $("#arrow").width())/2;
+  // $("#arrow").css("left", w);
+  //$("#arrow").css("padding-top", $("#first").height() - $(".header").height() - 600);
 }
 
 $(window).resize(resizeCanvas);
 
 $(document).ready(function() {
   resizeCanvas();
-  $("#header,#arrow").removeClass("hidden");
+  $(".header, #arrow").removeClass("hidden");
 });

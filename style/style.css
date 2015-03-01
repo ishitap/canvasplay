@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	color: rgba(0,0,0,0.8);
 }
 
 canvas { 
@@ -11,12 +12,11 @@ canvas {
 	height: 100%;
 }
 
-#header {
-	position:absolute;
+.header {
 	background-color: rgba(255,255,255,0);
 	pointer-events:none;
-	display:inline-block;
 	z-index: 10;
+	text-align: center;
 }
 
 #navbar {
@@ -27,13 +27,13 @@ canvas {
 	width: 100%;
 }
 
-#arrow {
-	position:absolute;
+#arrow, #learn {
 	pointer-events:all;
 }
 
 img {
 	pointer-events:all;
+	margin: 0 auto;
 }
 
 img:hover {
@@ -45,10 +45,10 @@ h1, h2 {
 	font-size: 32pt;
 	letter-spacing: 16pt;
 	padding-left: 10pt;
+	margin-bottom: 1em;
 }
 
 h2 {
-	text-align: left;
 	margin-bottom: 8pt;
 	letter-spacing: 5pt;
 	font-size: 12pt;
@@ -67,7 +67,7 @@ h2 {
   visibility: hidden;
 }
 
-#page {
+.page {
 	position: relative;
 	pointer-events:all;
 	z-index: 5;
@@ -76,7 +76,7 @@ h2 {
 	top:100vh;
 }
 
-#page h1 {
+.page h1 {
 	font-family: "museo-sans", 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
 	font-weight: normal;
 	color: rgba(0,0,0,0.4);
@@ -86,38 +86,67 @@ h2 {
 	padding-left: 11pt;
 }
 
-#page p {
+.page p {
 	padding-left: 11pt;
 	font-family: "calluna", serif;
-	font-size: 20px;
-	line-height: 36px;
+	font-size: 18px;
+	line-height: 30px;
 	color: rgba(0,0,0,0.7);
 }
 
-#container {
-	max-width: 650px;
+.container {
+	max-width: 1000px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	height: 100%;
 }
 
-#footer {
-	text-align: center;	
-	margin: 100px auto 20px auto;
-	font-family: "museo-sans", 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
-	font-weight: normal;
-	letter-spacing: 2px;
-	opacity: 0.5;
-	font-size: 16px;
-}
 
 @media (max-width : 700px) {
 
-	h1, h2, #page p {
+	h1, h2, .page p {
 		padding-left: 20px;
 		padding-right: 20px;
 		text-indent: 0;
 	}
+}
+
+a.button, a.button:hover, a.button:active, a.button:visited {
+	height: 20px;
+	padding: 10px 20px 10px 20px;
+	border: 2px solid rgba(0,0,0,0.8);
+	background-color: rgba(255,255,255,0.7);
+	color: rgba(0,0,0,0.8);
+	text-decoration: none;
+	font-family: "museo-sans", 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
+	margin-top: 20px;
+}
+
+a.button:hover {
+	text-decoration: none;
+	cursor: pointer;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+}
+
+#text {
+	margin-top: 150px;
+}
+
+#logistics, #logistics p {
+	text-align: right;
+	margin: 0;
+	font-family: 'museo-sans', 'Lato', 'Helvetica', 'Helvetica Neue', sans-serif;
+	font-size: 14px;
+}
+
+#logistics span {
+	font-weight: 700;
+}
+
+p.red {
+	color: #8C1515;
 }
 
 
@@ -129,5 +158,21 @@ and (max-device-width : 480px) {
 	h1, h2 {
 		letter-spacing: 0;
 	}
+
+	#logistics, #logistics p {
+		text-align: center;
+	}
+
+	.header.movedUp {
+
+	}
+
+	h1.movedUp {
+		font-size: 28px;
+	}
+
+
+
+
 }
 
